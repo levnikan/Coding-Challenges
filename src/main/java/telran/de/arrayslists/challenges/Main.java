@@ -1,10 +1,10 @@
-package telran.de.array.challenges;
+package telran.de.arrayslists.challenges;
 
 import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static MobilePhone mobilePhone = new MobilePhone("112 233 44");
+    private static MobilePhone mobilePhone = new MobilePhone();
 
     public static void main(String[] args) {
         boolean quit = false;
@@ -20,34 +20,26 @@ public class Main {
                     System.out.println("\nShutting down...");
                     quit = true;
                     break;
-
                 case 1:
                     mobilePhone.printContacts();
                     break;
-
                 case 2:
                     addNewContact();
                     break;
-
                 case 3:
                     updateContact();
                     break;
-
                 case 4:
                     removeContact();
                     break;
-
                 case 5:
                     queryContact();
                     break;
-
                 case 6:
                     printActions();
                     break;
             }
-
         }
-
     }
 
     private static void addNewContact() {
@@ -66,8 +58,7 @@ public class Main {
     private static void updateContact() {
         System.out.println("Enter existing contact name: ");
         String name = scanner.nextLine();
-        Contact existingContactRecord = mobilePhone.queryContact(name);
-        if (existingContactRecord == null) {
+        if (mobilePhone.getContact(name) == null) {
             System.out.println("Contact not found.");
             return;
         }
@@ -77,7 +68,7 @@ public class Main {
         System.out.print("Enter new contact phone number: ");
         String newNumber = scanner.nextLine();
         Contact newContact = Contact.createContact(newName, newNumber);
-        if (mobilePhone.updateContact(existingContactRecord, newContact)) {
+        if (mobilePhone.updateContact(newName, newContact)) {
             System.out.println("Successfully updated record");
         } else {
             System.out.println("Error updating record.");
@@ -85,15 +76,15 @@ public class Main {
     }
 
     private static void removeContact() {
-        System.out.println("Enter existing contact name: ");
+        System.out.println("Enter the contact name you want to delete: ");
         String name = scanner.nextLine();
-        Contact existingContactRecord = mobilePhone.queryContact(name);
+        Contact existingContactRecord = mobilePhone.getContact(name);
         if (existingContactRecord == null) {
             System.out.println("Contact not found.");
             return;
         }
 
-        if (mobilePhone.removeContact(existingContactRecord)) {
+        if (mobilePhone.removeContact(name)) {
             System.out.println("Successfully deleted");
         } else {
             System.out.println("Error deleting contact");
@@ -101,15 +92,15 @@ public class Main {
     }
 
     private static void queryContact() {
-        System.out.println("Enter existing contact name: ");
+        System.out.println("Enter the name you want to search for: ");
         String name = scanner.nextLine();
-        Contact existingContactRecord = mobilePhone.queryContact(name);
+        Contact existingContactRecord = mobilePhone.getContact(name);
         if (existingContactRecord == null) {
             System.out.println("Contact not found.");
             return;
         }
 
-        System.out.println("Name: " + existingContactRecord.getName() + " phone number is " + existingContactRecord.getPhoneNumber());
+        System.out.println(existingContactRecord.getName() +" exists. " + "Phone number is " + existingContactRecord.getPhoneNumber());
     }
 
     private static void startPhone() {

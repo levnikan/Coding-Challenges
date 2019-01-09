@@ -1,14 +1,12 @@
-package telran.de.array.challenges;
+package telran.de.arrayslists.challenges;
 
 import java.util.ArrayList;
 
 public class MobilePhone {
-    private String myNumber;
     private ArrayList<Contact> myContacts;
 
-    public MobilePhone(String myNumber) {
-        this.myNumber = myNumber;
-        this.myContacts = new ArrayList<Contact>();
+    public MobilePhone() {
+        this.myContacts = new ArrayList<>();
     }
 
     public boolean addNewContact(Contact contact) {
@@ -22,56 +20,44 @@ public class MobilePhone {
 
     }
 
-    public boolean updateContact(Contact oldContact, Contact newContact) {
+    public boolean updateContact(String oldContact, Contact newContact) {
         int foundPosition = findContact(oldContact);
         if (foundPosition < 0) {
-            System.out.println(oldContact.getName() + ", was not found.");
+            System.out.println(oldContact + ", was not found.");
             return false;
         }
 
         this.myContacts.set(foundPosition, newContact);
-        System.out.println(oldContact.getName() + ", was replaced with " + newContact.getName());
+        System.out.println(oldContact + ", was replaced with " + newContact.getName());
         return true;
     }
 
-    public boolean removeContact(Contact contact) {
-        int foundPosition = findContact(contact);
+    public boolean removeContact(String name) {
+        int foundPosition = findContact(name);
         if (foundPosition < 0) {
-            System.out.println(contact.getName() + ", was not found.");
+            System.out.println(name + ", was not found.");
             return false;
         }
         this.myContacts.remove(foundPosition);
-        System.out.println(contact.getName() + ", was deleted.");
+        System.out.println(name + ", was deleted.");
         return true;
     }
 
-    private int findContact(Contact contact) {
-        return this.myContacts.indexOf(contact);
-    }
-
-    private int findContact(String contactName) {
+    private int findContact(String name) {
         for (int i = 0; i < this.myContacts.size(); i++) {
             Contact contact = this.myContacts.get(i);
-            if (contact.getName().equals(contactName)) {
+            if (contact.getName().equals(name)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public String queryContact(Contact contact) {
-        if (findContact(contact) >= 0) {
-            return contact.getName();
-        }
-        return null;
-    }
-
-    public Contact queryContact(String name) {
+    public Contact getContact(String name) {
         int position = findContact(name);
         if (position >= 0) {
             return this.myContacts.get(position);
         }
-
         return null;
     }
 
