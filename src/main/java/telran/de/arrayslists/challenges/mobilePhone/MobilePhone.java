@@ -1,4 +1,4 @@
-package telran.de.arrayslists.challenges;
+package telran.de.arrayslists.challenges.mobilePhone;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package telran.de.arrayslists.challenges;
+package telran.de.arrayslists.challenges.mobilePhone;
 
 public class Contact {
     private String name;
