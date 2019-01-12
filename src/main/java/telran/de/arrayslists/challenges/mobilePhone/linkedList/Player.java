@@ -6,7 +6,7 @@ public class Player {
 
     public static void main(String[] args) {
         List<Album> albumList = new ArrayList<>();
-        LinkedList<Song> playlist = new LinkedList<>();
+        List<Song> playlist = new LinkedList<>();
         Song song1 = new Song("Gangnam Style", 3.55);
         Song song2 = new Song("Faradenza", 4.50);
         Song song3 = new Song("Batareyka", 4.30);
@@ -45,7 +45,7 @@ public class Player {
                         "Please select your action...\n");
     }
 
-    private static void showAllSongs(LinkedList<Song> playlist) {
+    private static void showAllSongs(List<Song> playlist) {
         Iterator<Song> iterator = playlist.iterator();
         System.out.println("=======================");
         while (iterator.hasNext()) {
@@ -54,15 +54,11 @@ public class Player {
         System.out.println("=======================");
     }
 
-    private static void removeCurrentSong(LinkedList<Song> playlist) {
-
-    }
-
-    private static void play(LinkedList playlist) {
+    private static void play(List playlist) {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         boolean goingForward = true;
-        ListIterator<Song> listIterator = playlist.listIterator();
+        ListIterator listIterator = playlist.listIterator();
 
         if (playlist.isEmpty()) {
             System.out.println("No songs in the itenerary");
