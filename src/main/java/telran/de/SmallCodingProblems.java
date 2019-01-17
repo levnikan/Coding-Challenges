@@ -1,6 +1,6 @@
 package telran.de;
 
-public class CodingProblems {
+public class SmallCodingProblems {
     public static final int THRESHOLD = 2;
 
     public static void main(String[] args) {
