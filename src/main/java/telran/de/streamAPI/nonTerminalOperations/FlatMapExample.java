@@ -1,11 +1,11 @@
-package telran.de.streamAPI;
+package telran.de.streamAPI.nonTerminalOperations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Main {
+public class FlatMapExample {
     public static void main(String[] args) {
         List<String> stringList = new ArrayList<>();
 
